@@ -146,7 +146,6 @@ function getOrderedMembers(group) {
                     alt={p.name}
                     class={getImgClass(IMAGE_STYLE)}
                     widths={[160, 320, 480]}
-                    formats={["avif", "webp", "jpeg"]}
                     loading={g === 'faculty' && i < 2 ? 'eager' : 'lazy'}
                     fetchpriority={g === 'faculty' && i < 2 ? 'high' : 'auto'}
                     width={IMAGE_DIMENSIONS.width}

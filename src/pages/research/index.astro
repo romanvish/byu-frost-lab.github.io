@@ -40,7 +40,14 @@ const metadata = { title: "Research" };
 
 // Set the image style for index cards: 'rect' | 'square' | 'round'
 // Change this value to quickly preview different styles.
-const IMAGE_STYLE = "square";
+const IMAGE_SIZES = {
+  rect: { width: 640, height: 192 },
+  square: { width: 480, height: 480 },
+  round: { width: 192, height: 192 },
+} as const;
+
+const IMAGE_STYLE: keyof typeof IMAGE_SIZES = 'square';
+const IMAGE_DIMENSIONS = IMAGE_SIZES[IMAGE_STYLE];
 
 function getImageWrapperClass(style) {
   if (style === "square")
@@ -117,21 +124,8 @@ function projectsByGroup(group) {
                       alt={p.project_name}
                       class={getImgClass(IMAGE_STYLE)}
                       widths={[160, 320, 480]}
-                      formats={["avif", "webp", "jpeg"]}
-                      width={
-                        IMAGE_STYLE === "round"
-                          ? 192
-                          : IMAGE_STYLE === "square"
-                            ? 480
-                            : 640
-                      }
-                      height={
-                        IMAGE_STYLE === "round"
-                          ? 192
-                          : IMAGE_STYLE === "square"
-                            ? 480
-                            : 192
-                      }
+                      width={IMAGE_DIMENSIONS.width}
+                      height={IMAGE_DIMENSIONS.height}
                     />
                   </div>
                   <div class="p-4 flex flex-col flex-1 relative z-20 pointer-events-none">
